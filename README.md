@@ -7,19 +7,21 @@ add okhttp, darwin to gradle and serialisation for both gradle files
 Create createHttpClient which you can install logging and auth utils packages.
 
 <h3> Add data handling utils class </h3>
+Create Error interface, NetworkingError Enum and finally Result
 
+<h3> Create the client</h3>
+- start with creating the client like InsultSensorClient
+- create a get/put/update/delete method
+- surround in try catch
+- check for error codes and map the Network.Error if needed
 
-This is a Kotlin Multiplatform project targeting Android, iOS.
+<h3> Pass the client to the app entry point </h3>
+for Android this is in mainActivity, pass th client into the app composable.
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+for iOS, go to MainViewController and pass the same remember variable to app, but give the Darwin Engine instead of OKHTTP
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+<h3>Give Android internet permission</h3>
+Update manifest with internet permissions
 
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+<h6>Documentation link for setup </h6>
+https://ktor.io/docs/client-create-multiplatform-application.html
